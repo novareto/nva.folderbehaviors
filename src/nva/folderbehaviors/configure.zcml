@@ -1,0 +1,111 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="nva.folderbehaviors">
+
+  <!-- Include configuration for dependencies listed in setup.py -->
+  <includeDependencies package="." />
+
+  <browser:resourceDirectory
+    name="nva.folderbehaviors"
+    directory="static" />
+
+  <include package="plone.behavior" file="meta.zcml" />
+
+  <utility factory=".imagecaptions.CaptioningAlwaysEnabled"
+         name="plone5-captions-always-enabled"/>
+
+  <subscriber
+    for="plone.app.contenttypes.interfaces.INewsItem
+         zope.lifecycleevent.IObjectCreatedEvent"
+    handler=".event.newsExpiration"
+    />
+
+  <i18n:registerTranslations directory="locales" />
+
+
+  <genericsetup:registerProfile
+      name="default"
+      title="nva.folderbehaviors"
+      directory="profiles/default"
+      description="Installs the nva.folderbehaviors add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="nva.folderbehaviors (unistall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the nva.folderbehaviors add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
+      />
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="nva.folderbehaviors-hiddenprofiles"
+      />
+
+
+    <browser:page
+      name="schmuckbild-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="cmf.ManagePortal"
+      class=".schmuckbildpanel.SchmuckbildControlPanelView"
+      />
+
+    <plone:behavior
+        title="Titelbild"
+        description="Speicherung von Bildern fuer den Ordner"
+        provides=".titelbild.ITitelbild"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <plone:behavior
+        title="Nachrichtenordner"
+        description="Verweis auf weitere Nachrichtenordner"
+        provides=".nachrichtenordner.INachrichtenOrdner"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <plone:behavior
+        title="Ordnertexte"
+        description="Eingabe von HTML-Texten zum Ordner"
+        provides=".richtext.IRichtext"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <plone:behavior
+        title="Downloads"
+        description="Auswahl von Datein fuer den Downloadbereich"
+        provides=".downloads.IDownloads"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <plone:behavior
+        title="Nachrichtenlink"
+        description="Verweis aus einer Nachricht auf ein anderes Objekt"
+        provides=".newslink.INewslink"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <plone:behavior
+        title="Schmuckbilder"
+        description="Schmuckbilder fuer Nachrichten"
+        provides=".schmuckbilder.ISchmuckbild"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <plone:behavior
+        title="Einstellungen fuer nva.kurzfassung"
+        description="Einstellungen fuer die Ansichten der nva.kurzfassung"
+        provides=".einstellungen.IEinstellungen"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+</configure>
