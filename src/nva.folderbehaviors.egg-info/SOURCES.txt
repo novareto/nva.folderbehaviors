@@ -22,6 +22,7 @@ src/nva/folderbehaviors/newslink.py
 src/nva/folderbehaviors/richtext.py
 src/nva/folderbehaviors/schmuckbilder.py
 src/nva/folderbehaviors/schmuckbildpanel.py
+src/nva/folderbehaviors/setuphandlers.py
 src/nva/folderbehaviors/testing.py
 src/nva/folderbehaviors/titelbild.py
 src/nva/folderbehaviors/tests/__init__.py
