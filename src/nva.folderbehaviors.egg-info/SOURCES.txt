@@ -12,6 +12,7 @@ src/nva.folderbehaviors.egg-info/paster_plugins.txt
 src/nva.folderbehaviors.egg-info/requires.txt
 src/nva.folderbehaviors.egg-info/top_level.txt
 src/nva/folderbehaviors/__init__.py
+src/nva/folderbehaviors/cards.py
 src/nva/folderbehaviors/downloads.py
 src/nva/folderbehaviors/einstellungen.py
 src/nva/folderbehaviors/event.py
