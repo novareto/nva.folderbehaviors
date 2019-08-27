@@ -115,4 +115,11 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
+    <plone:behavior
+        title="Barriefreiheit"
+        description="Felder zur Verbesserung der Barrierefreiheit"
+        provides=".barrierefreiheit.IBarrierefreiheit"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
 </configure>
