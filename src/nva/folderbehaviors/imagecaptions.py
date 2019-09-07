@@ -1,8 +1,8 @@
 from plone.outputfilters.filters.resolveuid_and_caption import IImageCaptioningEnabler
-from zope.interface import implements
+from zope.interface import implementer
 
+@implementer(IImageCaptioningEnabler)
 class CaptioningAlwaysEnabled(object):
-    implements(IImageCaptioningEnabler)
 
     @property
     def available(self):
