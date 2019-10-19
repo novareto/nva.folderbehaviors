@@ -14,8 +14,8 @@ from plone.app.vocabularies.catalog import CatalogSource
 from nva.folderbehaviors import MessageFactory as _
 
 display = SimpleVocabulary(
-    [SimpleTerm(value=u'abovetitle', title=_(u'Kopf des Dokuments')),
-     SimpleTerm(value=u'header', title=_(u'Unter den Navigationstabs'))]
+    [SimpleTerm(value=u'overlay', title=_(u'Bilder mit Text-Overlay im Kopf der Seite')),
+     SimpleTerm(value=u'header', title=_(u'Bilder mit Bildunterschrift im Kopf der Seite'))]
     )
 
 kind = SimpleVocabulary(
@@ -31,7 +31,7 @@ class ITitelbild(model.Schema):
     model.fieldset(
             'medien',
             label=_(u'Titelbilder'),
-            fields=('titleimages', 'viewlet', 'zufall'),
+            fields=('titleimages', 'viewlet'),
         )
 
 
@@ -49,7 +49,7 @@ class ITitelbild(model.Schema):
         description=u"Bitte waehlen Sie aus, an welcher Stelle der Seite das Banner angezeigt werden soll.",
         vocabulary=display,
         required=False,
-        default=u'abovetitle',
+        default=u'header',
         )
 
     #kind = schema.Choice(
@@ -60,11 +60,11 @@ class ITitelbild(model.Schema):
     #    default=u'categoryimg'
     #    )
 
-    zufall = schema.Bool(
-        title=u"Zufaellige Reihenfolge der Titelbilder",
-        description=u"Auswahl wenn das angezeigte Titelbild nach dem Zufallsprinzip ausgewahlt werden soll.",
-        required=False,
-        )
+    #zufall = schema.Bool(
+    #    title=u"Zufaellige Reihenfolge der Titelbilder",
+    #    description=u"Auswahl wenn das angezeigte Titelbild nach dem Zufallsprinzip ausgewahlt werden soll.",
+    #    required=False,
+    #    )
 
 #    newsimage = RelationChoice(
 #        title=u"Nachrichtenbild",

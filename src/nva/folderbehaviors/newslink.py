@@ -20,15 +20,25 @@ class INewslink(model.Schema):
     directives.fieldset(
             'newslink',
             label=_(u'Nachrichtenlink'),
-            fields=('newsurl',),
+            fields=('newsurl','extnews','extnewstitle'),
         )
 
     newsurl = RelationChoice(
         title=u"Nachrichtenobjekt",
-        description=u"Bitte waehlen Sie hier ein Objekt aus, auf das Sie aus der Nachricht verweisen wollen.",
-        source=CatalogSource(portal_type=['Folder', 'Document', 'NewsItem']),
+        description=u"Bitte hier einen Artikel auswählen, zu dem weitergeleitet werden soll.",
+        source=CatalogSource(portal_type=['Folder', 'Document', 'News Item']),
         required=False,
         )
 
+    extnews = schema.URI(
+        title=u"Alternativ: Externe Nachrichtenquelle",
+        description=u"Bitte hier eine alternative externe URL eintragen zu der weitergeleitet werden soll.",
+        required=False,
+        )
+
+    extnewstitle = schema.TextLine(
+        title=u"Titel der externen Nachrichtenquelle",
+        required=False,
+        )
 
 alsoProvides(INewslink, IFormFieldProvider)
