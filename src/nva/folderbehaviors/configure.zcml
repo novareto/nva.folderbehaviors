@@ -63,63 +63,54 @@
         title="Titelbild"
         description="Speicherung von Bildern fuer den Ordner"
         provides=".titelbild.ITitelbild"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <plone:behavior
         title="Nachrichtenordner"
         description="Verweis auf weitere Nachrichtenordner"
         provides=".nachrichtenordner.INachrichtenOrdner"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <plone:behavior
         title="Ordnertexte"
         description="Eingabe von HTML-Texten zum Ordner"
         provides=".richtext.IRichtext"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <plone:behavior
         title="Downloads"
         description="Auswahl von Datein fuer den Downloadbereich"
         provides=".downloads.IDownloads"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <plone:behavior
         title="Nachrichtenlink"
         description="Verweis aus einer Nachricht auf ein anderes Objekt"
         provides=".newslink.INewslink"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <plone:behavior
         title="Schmuckbilder"
         description="Schmuckbilder fuer Nachrichten"
         provides=".schmuckbilder.ISchmuckbild"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <plone:behavior
         title="Einstellungen fuer nva.kurzfassung"
         description="Einstellungen fuer die Ansichten der nva.kurzfassung"
         provides=".einstellungen.IEinstellungen"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <plone:behavior
         title="Inhalte als Karten"
         description="Referenzierung von Inhalten als Karten"
         provides=".cards.ICards"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <plone:behavior
         title="Barriefreiheit"
         description="Felder zur Verbesserung der Barrierefreiheit"
         provides=".barrierefreiheit.IBarrierefreiheit"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
 </configure>
