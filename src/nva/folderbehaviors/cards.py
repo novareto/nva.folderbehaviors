@@ -11,8 +11,8 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.app.contenttypes.interfaces import IImage
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from plone.app.vocabularies.catalog import CatalogSource
+from nva.folderbehaviors.einstellungen import column_vocabulary
 from nva.folderbehaviors import MessageFactory as _
-
 
 terms = [ 
         SimpleTerm(u'card text-white bg-primary mb-3', u'card text-white bg-primary mb-3', u'blauer Hintergrund'),
@@ -32,22 +32,39 @@ class ICards(model.Schema):
 
     model.fieldset(
             'contentcards',
-            label=_(u'Portlets'),
-            fields=('cards', 'cardcolor'),
+            label=_(u'Portlets und Karten'),
+            fields=('cards', 'contentcards', 'cardcolumns', 'cardcolor'),
         )
 
     cards = RelationList(
-        title=u"Inhalte als Portlets",
-        description=u"Bitte wählen Sie hier die Inhalte, die in Form einer Karte oder Box im Zusammenhang mit dem Inhalt angezeigt werden sollen.",
+        title=u"Auswahl Portlets",
+        description=u"Bitte wählen Sie hier die Artikel, die als Karten in der rechten Spalte des Portals angezeigt werden sollen.",
+        default=[],
+        value_type=RelationChoice(title=u"Inhalte",
+                                  source=CatalogSource(portal_type=['Document','Image','Collection'])),
+        required=False,
+        )
+
+    contentcards = RelationList(
+        title=u"Auswahl Content-Karten",
+        description=u"Bitte wählen Sie hier die Artikel, die als Karten nach dem Haupttext (vor dem Schlusstext) angezeigt werden sollen.",
         default=[],
         value_type=RelationChoice(title=u"Inhalte",
                                   source=CatalogSource()),
         required=False,
         )
 
+
+    cardcolumns = schema.Choice(
+        title=u"Anzahl der Content-Karten",
+        description=u"Anzahl der Content-Karten, die nebeneinander angezeigt werden dürfen.",
+        vocabulary=column_vocabulary,
+        default=3)
+
+
     cardcolor = schema.Choice(
-        title = u"Farbe der Portlet-Karte",
-        description = u"Wenn dieser Artikel als Portlet verwendet wird, kann hier die Farbe der Portlet-Karte konfiguriert werden.",
+        title = u"Farbe der Karte",
+        description = u"Wenn dieser Artikel als Portlet oder Content-Karte verwendet wird, kann hier die Farbe der Karte eingestellt werden.",
         vocabulary = cardsVocabulary,
         default = 'card border-primary mb-3'
         )
