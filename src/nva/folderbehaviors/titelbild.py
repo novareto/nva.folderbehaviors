@@ -15,7 +15,8 @@ from nva.folderbehaviors import MessageFactory as _
 
 display = SimpleVocabulary(
     [SimpleTerm(value=u'overlay', title=_(u'Bilder mit Text-Overlay im Kopf der Seite')),
-     SimpleTerm(value=u'header', title=_(u'Bilder mit Bildunterschrift im Kopf der Seite'))]
+     SimpleTerm(value=u'header', title=_(u'Bilder mit Bildunterschrift im Kopf der Seite')),
+     SimpleTerm(value=u'video', title=_(u'IFrame mit Video im Kopf der Seite'))]
     )
 
 kind = SimpleVocabulary(
@@ -31,7 +32,7 @@ class ITitelbild(model.Schema):
     model.fieldset(
             'medien',
             label=_(u'Titelbilder'),
-            fields=('titleimages', 'viewlet'),
+            fields=('titleimages', 'embedcode', 'viewlet'),
         )
 
 
@@ -41,6 +42,12 @@ class ITitelbild(model.Schema):
         default=[],
         value_type=RelationChoice(title=u"Titelbilder",
                                   source=CatalogSource()),
+        required=False,
+        )
+
+    embedcode = schema.Text(
+        title=u"Einbettungscode einer Videoplattform",
+        description=u"Bitte fügen Sie hier den Einbettungsode ihrer Videoplattform ein.",
         required=False,
         )
 
