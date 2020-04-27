@@ -27,12 +27,16 @@ class IEinstellungen(model.Schema):
     model.fieldset(
             'settings',
             label=_(u'Einstellungen'),
-            fields=('batchvalue', 'excludeFromDisplay', 'alttitle', 'columns'),
+            fields=('batchvalue', 'excludeFromDisplay', 'alttitle', 'dachzeile', 'columns'),
         )
 
     alttitle = schema.TextLine(title=u'Alternativer Titel',
                                description=u'Wird verwendet, wenn der Originaltitel für die Darstellungsformate der Ordner zu lang ist.',
                                required = False)
+
+    dachzeile = schema.TextLine(title=u"Dachzeile",
+                                description=u"Wenn vorhanden wird die Dachzeile oberhalb des Titels angezeigt.",
+                                required = False)
 
     batchvalue = schema.Choice(
         title=u"Anzahl der Artikel im Stapel",
