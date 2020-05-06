@@ -22,6 +22,7 @@ terms = [
         SimpleTerm(u'card text-white bg-warning mb-3', u'card text-white bg-warning mb-3', u'oranger Hintergrund'),
         SimpleTerm(u'card text-white bg-info mb-3', u'card text-white bg-info mb-3', u'türkiser Hintergrund'),
         SimpleTerm(u'card border-primary mb-3', u'card border-primary mb-3', u'blauer Rahmen'),
+        SimpleTerm(u'card card-shadow mb-3', u'card card-shadow mb-3', u'grauer Hintergrund, Schattierung'),
         ]
 cardsVocabulary = SimpleVocabulary(terms)
 
@@ -41,7 +42,7 @@ class ICards(model.Schema):
         description=u"Bitte wählen Sie hier die Artikel, die als Karten in der rechten Spalte des Portals angezeigt werden sollen.",
         default=[],
         value_type=RelationChoice(title=u"Inhalte",
-                                  source=CatalogSource(portal_type=['Document','Image','Collection'])),
+                                  source=CatalogSource(portal_type=['Folder', 'Document','Image','Collection'])),
         required=False,
         )
 
@@ -66,7 +67,7 @@ class ICards(model.Schema):
         title = u"Farbe der Karte",
         description = u"Wenn dieser Artikel als Portlet oder Content-Karte verwendet wird, kann hier die Farbe der Karte eingestellt werden.",
         vocabulary = cardsVocabulary,
-        default = 'card border-primary mb-3'
+        default = 'card card-shadow mb-3'
         )
 
 alsoProvides(ICards,IFormFieldProvider)
