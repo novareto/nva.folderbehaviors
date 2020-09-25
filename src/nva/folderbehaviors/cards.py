@@ -42,7 +42,7 @@ class ICards(model.Schema):
         description=u"Bitte wählen Sie hier die Artikel, die als Karten in der rechten Spalte des Portals angezeigt werden sollen.",
         default=[],
         value_type=RelationChoice(title=u"Inhalte",
-                                  source=CatalogSource(portal_type=['Folder', 'Document','Image','Collection'])),
+                                  source=CatalogSource(portal_type=['Folder', 'Document','Image','Collection', 'Portlet'])),
         required=False,
         )
 
